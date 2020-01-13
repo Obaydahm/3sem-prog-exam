@@ -2,14 +2,16 @@ package facades;
 
 import utils.EMF_Creator;
 import javax.persistence.EntityManagerFactory;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
 
 //Uncomment the line below, tao temporarily disable this test
-//@Disabled
+//
 public class ServerFacadeTest {
 
     private static EntityManagerFactory emf;
