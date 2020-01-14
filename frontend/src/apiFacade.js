@@ -1,4 +1,4 @@
-const URL = "https://sinanjasar.dk/CA3";
+const URL = "http://localhost:8080/eksamen/api/";
 function handleHttpErrors(res) {
   if (!res.ok) {
     return Promise.reject({ status: res.status, fullError: res.json() });
@@ -9,6 +9,17 @@ function handleHttpErrors(res) {
 class ApiFacade {
 
   roles = [0];
+
+  getRole = () => {
+    let jwtToken = localStorage.getItem("jwtToken");
+    if (jwtToken !== null) {
+      let tokenData = jwtToken.split(".")[1];
+      let decodedData = window.atob(tokenData);
+      let dataJson = JSON.parse(decodedData);
+      return dataJson.roles;
+    }
+    return "notloggedin";
+  };
 
   setToken = token => {
     localStorage.setItem("jwtToken", token);
@@ -22,6 +33,7 @@ class ApiFacade {
   };
   logout = () => {
     localStorage.removeItem("jwtToken");
+    this.roles = [0];
   };
 
   makeOptions(method, addToken, body) {
@@ -53,7 +65,7 @@ class ApiFacade {
       password: pass
     });
 
-    return fetch(URL + "/api/login", options)
+    return fetch(URL + "login", options)
       .then(handleHttpErrors)
       .then(res => {
         this.setToken(res.token);
@@ -61,9 +73,18 @@ class ApiFacade {
       });
   };
 
-  fetchPosts = () => {
-    const options = this.makeOptions("GET", false); //True add's the token
-    return fetch(URL + "/api/server/all", options).then(handleHttpErrors)
+  fetchJokes = async (search, loggedIn) => {
+    let endpoint = "jokeByCategory";
+    if (loggedIn) endpoint = "jokeByCategoryV2"
+    const options = this.makeOptions("GET", true); //True add's the token
+    const res = await fetch(URL + `${endpoint}/${search.toLowerCase()}`, options);
+    return handleHttpErrors(res);
+  }
+
+  getCategoryCount = async (search) => {
+    const options = this.makeOptions("GET", true); //True add's the token
+    const res = await fetch(URL + `categoryCount/${search}`, options);
+    return handleHttpErrors(res);
   }
 }
 const facade = new ApiFacade();

@@ -60,6 +60,9 @@ h1 {
   width: fit-content;
   padding: 20px;
   margin: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 form {
   width: 70vw;
@@ -86,6 +89,34 @@ button {
 }
 button:hover {
   background: rgba(105, 155, 244, 0.8);
+}
+
+
+select.admin-select {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+}
+
+
+select.jokes-select {
+  width: 100%;
+  height: 200px;
+}
+
+table.jokes-table{
+  width: 100%;
+  border-color: #e1e1e1;
+}
+
+table.jokes-table th {
+  background-color: #f1f1f1;
+  color: #616161;
+}
+
+table.jokes-table th,td {
+  text-align: left;
+  padding: 10px;
 }
 #root {
   height: 100vh;
