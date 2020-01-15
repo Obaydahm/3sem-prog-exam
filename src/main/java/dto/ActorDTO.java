@@ -34,6 +34,11 @@ class ActorDTO {
     public void setAbout(String about) {
         this.about = about;
     }
+
+    @Override
+    public String toString() {
+        return "ActorDTO{" + "name=" + name + ", about=" + about + '}';
+    }
     
     
     

@@ -24,7 +24,6 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "Actor.getAll", query = "SELECT a FROM Actor a"),
     @NamedQuery(name = "Actor.getByName", query = "SELECT a FROM Actor a where a.name = :name"),
     @NamedQuery(name = "Actor.deleteAll", query = "DELETE FROM Actor a"),
-    @NamedQuery(name = "Actor.getByMovieByActor", query = "SELECT a.movies FROM Actor a WHERE a.name = :name")
 })
 public class Actor implements Serializable {
 

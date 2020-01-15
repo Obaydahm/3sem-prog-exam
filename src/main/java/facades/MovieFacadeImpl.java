@@ -147,13 +147,31 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
     }
 
     @Override
-    public MovieDTO getMovieByTitle(String title) throws NotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<MovieDTO> getMovieByTitle(String title) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<MovieDTO> tq = em.createNamedQuery("Movie.getByTitle", MovieDTO.class).setParameter("title", title);
+            List<MovieDTO> movies = tq.getResultList();
+            if(movies.size() < 1) throw new NotFoundException("No movies named " + title + " exists in the database.");
+            return movies;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
-    public List<MovieDTO> getMoviesByDirector(String director) throws NotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<MovieDTO> getMoviesByDirector(String name) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        List<MovieDTO> moviesDTO;
+        try {
+            Director d = getDirector(name);
+            if(d == null) throw new NotFoundException(name + " isn't a registered director.");
+            List<MovieDTO> movies = em.createNamedQuery("Movie.getByDirector", MovieDTO.class).setParameter("director", d).getResultList();
+            if(movies.size() < 1) throw new NotFoundException(d.getName() + " haven't directed any movies yet.");
+            return movies;
+        } finally {
+            em.close();
+        }
     }
 
     @Override

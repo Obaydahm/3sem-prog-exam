@@ -34,6 +34,11 @@ class DirectorDTO {
     public void setAbout(String about) {
         this.about = about;
     }
+
+    @Override
+    public String toString() {
+        return "DirectorDTO{" + "name=" + name + ", about=" + about + '}';
+    }
     
     
 }

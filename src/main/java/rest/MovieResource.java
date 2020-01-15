@@ -14,6 +14,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import static javax.ws.rs.client.Entity.json;
 import javax.ws.rs.core.Context;
@@ -41,14 +42,7 @@ public class MovieResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getInfoForAll() {
-        return "{\"msg\":\"Hello anonymous\"}";
-    }
-    
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("all")
-    public String getAllMovies() {
-        return GSON.toJson(FACADE.getAllMovies());
+        return "{\"status\":\"ok\"}";
     }
     
     @POST
@@ -59,6 +53,29 @@ public class MovieResource {
         Movie jsonAsMovie = GSON.fromJson(jsonString, Movie.class);
         return GSON.toJson(FACADE.addMovie(jsonAsMovie));
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("all")
+    public String getAllMovies() {
+        return GSON.toJson(FACADE.getAllMovies());
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getbytitle/{title}")
+    public String getMovieByTitle(@PathParam("title") String title) {
+        return GSON.toJson(FACADE.getMovieByTitle(title));
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("getbydirector/{director}")
+    public String getMovieByDirector(@PathParam("director") String director) {
+        return GSON.toJson(FACADE.getMoviesByDirector(director));
+    }
+    
+    
     
     
     

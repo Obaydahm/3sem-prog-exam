@@ -17,8 +17,8 @@ import java.util.List;
 public interface MovieFacadeInterface {
     public MovieDTO addMovie(Movie m);
     public List<MovieDTO> getAllMovies() throws NotFoundException;
-    public MovieDTO getMovieByTitle(String title) throws NotFoundException;
-    public List<MovieDTO> getMoviesByDirector(String director) throws NotFoundException;
-    public List<MovieDTO> getMoviesByActor(String Actor) throws NotFoundException;
-    public List<MovieDTO> getMoviesByGenre(String Genres) throws NotFoundException;
+    public List<MovieDTO> getMovieByTitle(String title) throws NotFoundException;
+    public List<MovieDTO> getMoviesByDirector(String name) throws NotFoundException;
+    public List<MovieDTO> getMoviesByActor(String name) throws NotFoundException;
+    public List<MovieDTO> getMoviesByGenre(String name) throws NotFoundException;
 }

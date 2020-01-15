@@ -24,7 +24,6 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "Director.getAll", query = "SELECT d FROM Director d"),
     @NamedQuery(name = "Director.getByName", query = "SELECT d FROM Director d where d.name = :name"),
     @NamedQuery(name = "Director.deleteAll", query = "DELETE FROM Director d"),
-    @NamedQuery(name = "Director.getByMovieByDirector", query = "SELECT d.movies FROM Director d WHERE d.name = :name")
 })
 public class Director implements Serializable {
 
@@ -63,8 +62,6 @@ public class Director implements Serializable {
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
-    
-    
     
     public Long getId() {
         return id;
