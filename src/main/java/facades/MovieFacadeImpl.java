@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -37,7 +38,7 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
     private static Director getDirector(String name){
         EntityManager em = emf.createEntityManager();
         try{
-            if (name.isEmpty() || name == null) throw new IllegalArgumentException("You must enter a street!");
+            if (name.isEmpty() || name == null) return null;
             Director director = em.createNamedQuery("Director.getByName", Director.class).setParameter("name", name).getSingleResult();
             return director;
         }catch(Exception e){
@@ -50,7 +51,7 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
     private static Actor getActor(String name){
         EntityManager em = emf.createEntityManager();
         try{
-            if (name.isEmpty() || name == null) throw new IllegalArgumentException("You must enter a street!");
+            if (name.isEmpty() || name == null) return null;
             Actor actor = em.createNamedQuery("Actor.getByName", Actor.class).setParameter("name", name).getSingleResult();
             return actor;
         }catch(Exception e){
@@ -63,7 +64,7 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
     private static Genre getGenre(String name){
         EntityManager em = emf.createEntityManager();
         try{
-            if (name.isEmpty() || name == null) throw new IllegalArgumentException("You must enter a street!");
+            if (name.isEmpty() || name == null) return null;
             Genre genre = em.createNamedQuery("Genre.getByName", Genre.class).setParameter("name", name).getSingleResult();
             return genre;
         }catch(Exception e){
@@ -96,32 +97,30 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
             for(Director d : m.getDirectors()){
                 director = getDirector(d.getName());
                 if(director == null){
-                    newDirectors.add(d);
+                    em.persist(d);
                 }else{
-                    existingDirectors.add(d);
+                    existingDirectors.add(director);
                 }
             }
             
             for(Actor a : m.getActors()){
                 actor = getActor(a.getName());
                 if(actor == null){
-                    newActors.add(a);
+                    em.persist(a);
+                    System.out.println(a);
                 }else{
-                    existingActors.add(a);
+                    existingActors.add(actor);
                 }
             }
             
             for(Genre g : m.getGenres()){
                 genre = getGenre(g.getName());
                 if(genre == null){
-                    newGenres.add(g);
+                    em.persist(g);
                 }else{
-                    existingGenres.add(g);
+                    existingGenres.add(genre);
                 }
             }
-            if(newDirectors.size() > 0) em.persist(newDirectors);
-            if(newActors.size() > 0) em.persist(newActors);
-            if(newActors.size() > 0) em.persist(newGenres);
             
             if(existingDirectors.size() > 0) m.setDirectors(existingDirectors);
             if(existingActors.size() > 0) m.setActors(existingActors);
@@ -136,7 +135,15 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
 
     @Override
     public List<MovieDTO> getAllMovies() throws NotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<MovieDTO> tq = em.createNamedQuery("Movie.getAll", MovieDTO.class);
+            List<MovieDTO> movies = tq.getResultList();
+            if(movies.size() < 1) throw new NotFoundException("No movies has been added to the database yet.");
+            return movies;
+        } finally {
+            em.close();
+        }
     }
 
     @Override

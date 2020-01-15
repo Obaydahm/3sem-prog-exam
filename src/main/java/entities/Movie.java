@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,7 @@ import javax.persistence.NamedQuery;
 //SELECT COUNT(c.requests) FROM Category c WHERE c.name = :name
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Movie.getAll", query = "SELECT m FROM Movie m"),
+    @NamedQuery(name = "Movie.getAll", query = "SELECT new dto.MovieDTO(m) FROM Movie m"),
     @NamedQuery(name = "Movie.deleteAll", query = "DELETE FROM Movie m"),
     @NamedQuery(name = "Movie.getByTitle", query = "SELECT m FROM Movie m WHERE m.title = :title")
 })
@@ -36,13 +37,13 @@ public class Movie implements Serializable {
     private String title;
     private int year, votes;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private List<Director> directors;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private List<Actor> actors;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private List<Genre> genres;
 
     public Movie() {
@@ -128,7 +129,9 @@ public class Movie implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Movie[ id=" + id + " ]";
+        return "Movie{" + "id=" + id + ",\n title=" + title + ",\n year=" + year + ",\n votes=" + votes + ",\n directors=" + directors + ",\n actors=" + actors + ",\n genres=" + genres + '}';
     }
+
+    
     
 }

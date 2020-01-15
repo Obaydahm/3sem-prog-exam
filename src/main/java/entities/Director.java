@@ -96,7 +96,9 @@ public class Director implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Director[ id=" + id + " ]";
+        return "Director{" + "id=" + id + ", name=" + name + ", about=" + about + '}';
     }
+
+    
     
 }

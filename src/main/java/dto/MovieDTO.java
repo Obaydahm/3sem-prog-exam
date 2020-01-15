@@ -17,6 +17,7 @@ import java.util.List;
  * @author Obaydah Mohamad
  */
 public class MovieDTO {
+    private Long id;
     private String title;
     private int year, votes;
     private List<DirectorDTO> directors;
@@ -24,6 +25,7 @@ public class MovieDTO {
     private List<GenreDTO> genres;
     
     public MovieDTO(Movie m){
+        this.id = m.getId();
         this.title = m.getTitle();
         this.year = m.getYear();
         this.votes = m.getVotes();

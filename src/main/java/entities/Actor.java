@@ -96,7 +96,9 @@ public class Actor implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Actor[ id=" + id + " ]";
+        return "Actor{" + "id=" + id + ", name=" + name + ", about=" + about + '}';
     }
+
+   
     
 }
