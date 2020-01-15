@@ -13,6 +13,7 @@ import entities.Actor;
 import entities.Director;
 import entities.Genre;
 import entities.Movie;
+import errorhandling.AlreadyExistsException;
 import errorhandling.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -239,6 +240,51 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
             if(genres.size() < 1) throw new NotFoundException("No genres has been added to the database yet.");
             return genres;
         } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public DirectorDTO addDirector(Director d) throws AlreadyExistsException {
+        EntityManager em = emf.createEntityManager();
+        Director director;
+        try{
+            if(getDirector(d.getName()) != null) throw new AlreadyExistsException("Director with this name already exists!");
+            em.getTransaction().begin();
+            em.persist(d);
+            em.getTransaction().commit();
+            return new DirectorDTO(d);
+        }finally{
+            em.close();
+        }
+    }
+
+    @Override
+    public ActorDTO addActor(Actor a) throws AlreadyExistsException {
+        EntityManager em = emf.createEntityManager();
+        Actor actor;
+        try{
+            if(getActor(a.getName()) != null) throw new AlreadyExistsException("Actor with this name already exists!");
+            em.getTransaction().begin();
+            em.persist(a);
+            em.getTransaction().commit();
+            return new ActorDTO(a);
+        }finally{
+            em.close();
+        }
+    }
+
+    @Override
+    public GenreDTO addGenre(Genre g) throws AlreadyExistsException {
+                EntityManager em = emf.createEntityManager();
+        Genre genre;
+        try{
+            if(getGenre(g.getName()) != null) throw new AlreadyExistsException("Genre with this name already exists!");
+            em.getTransaction().begin();
+            em.persist(g);
+            em.getTransaction().commit();
+            return new GenreDTO(g);
+        }finally{
             em.close();
         }
     }

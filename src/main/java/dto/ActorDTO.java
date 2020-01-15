@@ -12,9 +12,11 @@ import entities.Actor;
  * @author Obaydah Mohamad
  */
 public class ActorDTO {
+    private Long id;
     private String name, about;
 
     public ActorDTO(Actor a) {
+        this.id = a.getId();
         this.name = a.getName();
         this.about = a.getAbout();
     }

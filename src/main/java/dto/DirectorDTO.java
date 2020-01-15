@@ -12,9 +12,11 @@ import entities.Director;
  * @author Obaydah Mohamad
  */
 public class DirectorDTO {
+    private Long id;
     private String name, about;
 
     public DirectorDTO(Director d) {
+        this.id = d.getId();
         this.name = d.getName();
         this.about = d.getAbout();
     }

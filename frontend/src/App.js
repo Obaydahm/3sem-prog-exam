@@ -6,7 +6,9 @@ import facade from "./apiFacade";
 import LogIn from "./components/LogIn";
 import Home from "./components/Home";
 import AdminMenu from "./components/Admin/AdminMenu";
-import AdminMovies from "./components/Admin/AdminMovies";
+
+import AdminMovies from "./components/Admin/Movies/AdminMovies";
+import AdminDirectors from "./components/Admin/Directors/AdminDirectors";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -76,6 +78,10 @@ function App() {
                 <AdminMenu />
                 <Route exact path="/admin/movies">
                   <AdminMovies facade={facade} allDirectors={allDirectors} allActor={allActor} allGenres={allGenres} years={years} />
+                </Route>
+
+                <Route exact path="/admin/directors">
+                  <AdminDirectors facade={facade} allDirectors={allDirectors} allActor={allActor} allGenres={allGenres} years={years} />
                 </Route>
               </Row>
             </Container>

@@ -12,9 +12,11 @@ import entities.Genre;
  * @author Obaydah Mohamad
  */
 public class GenreDTO {
+    private Long id;
     private String name;
 
     public GenreDTO(Genre g) {
+        this.id = g.getId();
         this.name = g.getName();
     }
 

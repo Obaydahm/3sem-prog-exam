@@ -9,7 +9,11 @@ import dto.ActorDTO;
 import dto.MovieDTO;
 import dto.DirectorDTO;
 import dto.GenreDTO;
+import entities.Actor;
+import entities.Director;
+import entities.Genre;
 import entities.Movie;
+import errorhandling.AlreadyExistsException;
 import errorhandling.NotFoundException;
 import java.util.List;
 
@@ -19,6 +23,9 @@ import java.util.List;
  */
 public interface MovieFacadeInterface {
     public MovieDTO addMovie(Movie m);
+    public DirectorDTO addDirector(Director d) throws AlreadyExistsException;
+    public ActorDTO addActor(Actor a) throws AlreadyExistsException;
+    public GenreDTO addGenre(Genre g) throws AlreadyExistsException;
     public List<MovieDTO> getAllMovies() throws NotFoundException;
     public List<MovieDTO> getMovieByTitle(String title) throws NotFoundException;
     public List<MovieDTO> getMoviesByDirector(String name) throws NotFoundException;

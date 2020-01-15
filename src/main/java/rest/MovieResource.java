@@ -7,6 +7,9 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entities.Actor;
+import entities.Director;
+import entities.Genre;
 import entities.Movie;
 import facades.MovieFacadeImpl;
 import javax.persistence.EntityManagerFactory;
@@ -16,7 +19,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import static javax.ws.rs.client.Entity.json;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
@@ -50,8 +52,35 @@ public class MovieResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("addmovie")
     public String addMovie(String jsonString) {
-        Movie jsonAsMovie = GSON.fromJson(jsonString, Movie.class);
-        return GSON.toJson(FACADE.addMovie(jsonAsMovie));
+        Movie movie = GSON.fromJson(jsonString, Movie.class);
+        return GSON.toJson(FACADE.addMovie(movie));
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("adddirector")
+    public String addDirector(String jsonString) {
+        Director director = GSON.fromJson(jsonString, Director.class);
+        return GSON.toJson(FACADE.addDirector(director));
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("addactor")
+    public String addActor(String jsonString) {
+        Actor actor = GSON.fromJson(jsonString, Actor.class);
+        return GSON.toJson(FACADE.addActor(actor));
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("addgenre")
+    public String addGenre(String jsonString) {
+        Genre genre = GSON.fromJson(jsonString, Genre.class);
+        return GSON.toJson(FACADE.addGenre(genre));
     }
     
     @GET

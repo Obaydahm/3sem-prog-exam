@@ -73,12 +73,34 @@ class ApiFacade {
       });
   };
 
+  /* Add */
   addMovie = async (movie) => {
     const options = this.makeOptions("POST", true, movie);
     const res = await fetch(URL + "movie/addmovie", options);
     return handleHttpErrors(res);
   };
 
+  addDirector = async (director) => {
+    const options = this.makeOptions("POST", true, director);
+    const res = await fetch(URL + "movie/adddirector", options);
+    return handleHttpErrors(res);
+  };
+
+  addActor = async (actor) => {
+    const options = this.makeOptions("POST", true, actor);
+    const res = await fetch(URL + "movie/addactor", options);
+    return handleHttpErrors(res);
+  };
+
+  addGenre = async (genre) => {
+    const options = this.makeOptions("POST", true, genre);
+    const res = await fetch(URL + "movie/addgenre", options);
+    return handleHttpErrors(res);
+  };
+
+  /////////////////////////////////////////////////////
+
+  /* Fetch */
   fetchAllDirectors = async () => {
     const options = this.makeOptions("GET", false); //True add's the token
     const res = await fetch(URL + `movie/alldirectors`, options);
