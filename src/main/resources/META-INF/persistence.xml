@@ -7,6 +7,10 @@
     <class>entities.User</class>
     <class>entities.Role</class>
     <class>entities.Post</class>
+    <class>entities.Movie</class>
+    <class>entities.Director</class>
+    <class>entities.Actor</class>
+    <class>entities.Genre</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <!-- DO NOT remove the line below. It's not set by the  entityUtils.EMF_Creator -->
