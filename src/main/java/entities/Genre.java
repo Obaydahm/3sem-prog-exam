@@ -22,6 +22,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Genre.getAll", query = "SELECT g FROM Genre g"),
+    @NamedQuery(name = "Genre.getByName", query = "SELECT g FROM Genre g where g.name = :name"),    
     @NamedQuery(name = "Genre.deleteAll", query = "DELETE FROM Genre g"),
     @NamedQuery(name = "Genre.getByMovieByDirectors", query = "SELECT g.movies FROM Genre g WHERE g.name = :name")
 })
