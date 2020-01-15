@@ -11,8 +11,13 @@ import entities.Actor;
 import entities.Director;
 import entities.Genre;
 import entities.Movie;
+import entities.Role;
+import entities.User;
+import errorhandling.AlreadyExistsException;
 import facades.MovieFacadeImpl;
+import facades.UserFacade;
 import javax.annotation.security.RolesAllowed;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -34,6 +39,7 @@ import utils.EMF_Creator;
 public class MovieResource {
     private static EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
     private static final MovieFacadeImpl FACADE = MovieFacadeImpl.getMovieFacade(EMF);
+
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @Context

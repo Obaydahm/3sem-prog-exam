@@ -5,6 +5,7 @@
  */
 package facades;
 
+import entities.Role;
 import entities.User;
 import errorhandling.AuthenticationException;
 import javax.persistence.EntityManager;
@@ -26,6 +27,40 @@ public class UserFacade {
             instance = new UserFacade();
         }
         return instance;
+    }
+    
+    public String populateUsers(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            Long count = (Long)em.createQuery("SELECT COUNT(u) FROM User u").getSingleResult();
+            
+            if(count > 0) return "already populated";
+            
+            User user = new User("user", "user123");
+            User admin = new User("admin", "admin123");
+            User both = new User("user_admin", "user_admin123");
+
+            em.getTransaction().begin();
+            Role userRole = new Role("user");
+            Role adminRole = new Role("admin");
+            user.addRole(userRole);
+            admin.addRole(adminRole);
+            both.addRole(userRole);
+            both.addRole(adminRole);
+            em.persist(userRole);
+            em.persist(adminRole);
+            em.persist(user);
+            em.persist(admin);
+            em.persist(both);
+            em.getTransaction().commit();
+            System.out.println("PW: " + user.getPassword());
+            System.out.println("Testing user with OK password: " + user.verifyPassword("test"));
+            System.out.println("Testing user with wrong password: " + user.verifyPassword("test1"));
+            System.out.println("Created TEST Users");
+            return "populated";
+        }finally{
+            em.close();
+        }
     }
     
     public User getUser(String username, String password) throws AuthenticationException {

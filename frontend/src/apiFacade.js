@@ -1,4 +1,5 @@
-const URL = "http://localhost:8080/eksamen/api/";
+//const URL = "http://localhost:8080/eksamen/api/";
+const URL = "https://omoussa.com/eksamen/api/";
 function handleHttpErrors(res) {
   if (!res.ok) {
     return Promise.reject({ status: res.status, fullError: res.json() });
