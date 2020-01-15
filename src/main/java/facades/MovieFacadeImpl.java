@@ -5,6 +5,9 @@
  */
 package facades;
 
+import dto.ActorDTO;
+import dto.DirectorDTO;
+import dto.GenreDTO;
 import dto.MovieDTO;
 import entities.Actor;
 import entities.Director;
@@ -196,6 +199,45 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
             List<MovieDTO> movies = em.createNamedQuery("Movie.getByGenre", MovieDTO.class).setParameter("genre", g).getResultList();
             if(movies.size() < 1) throw new NotFoundException(g.getName() + " haven't been assigned to any movies yet.");
             return movies;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<DirectorDTO> getAllDirectors() throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<DirectorDTO> tq = em.createNamedQuery("Director.getAll", DirectorDTO.class);
+            List<DirectorDTO> directors = tq.getResultList();
+            if(directors.size() < 1) throw new NotFoundException("No directors has been added to the database yet.");
+            return directors;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<ActorDTO> getAllActors() throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<ActorDTO> tq = em.createNamedQuery("Actor.getAll", ActorDTO.class);
+            List<ActorDTO> actors = tq.getResultList();
+            if(actors.size() < 1) throw new NotFoundException("No actors has been added to the database yet.");
+            return actors;
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<GenreDTO> getAllGenres() throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<GenreDTO> tq = em.createNamedQuery("Genre.getAll", GenreDTO.class);
+            List<GenreDTO> genres = tq.getResultList();
+            if(genres.size() < 1) throw new NotFoundException("No genres has been added to the database yet.");
+            return genres;
         } finally {
             em.close();
         }

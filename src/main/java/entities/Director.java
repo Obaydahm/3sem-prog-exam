@@ -21,7 +21,7 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Director.getAll", query = "SELECT d FROM Director d"),
+    @NamedQuery(name = "Director.getAll", query = "SELECT new dto.DirectorDTO(d) FROM Director d"),
     @NamedQuery(name = "Director.getByName", query = "SELECT d FROM Director d where d.name = :name"),
     @NamedQuery(name = "Director.deleteAll", query = "DELETE FROM Director d"),
 })

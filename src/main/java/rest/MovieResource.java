@@ -89,6 +89,27 @@ public class MovieResource {
         return GSON.toJson(FACADE.getMoviesByGenre(genre));
     }    
     
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("alldirectors")
+    public String getAllDirectors() {
+        return GSON.toJson(FACADE.getAllDirectors());
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("allactors")
+    public String getAllActors() {
+        return GSON.toJson(FACADE.getAllActors());
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("allgenres")
+    public String getAllGenres() {
+        return GSON.toJson(FACADE.getAllGenres());
+    }
+    
     
     
 }

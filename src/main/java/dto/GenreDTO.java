@@ -11,7 +11,7 @@ import entities.Genre;
  *
  * @author Obaydah Mohamad
  */
-class GenreDTO {
+public class GenreDTO {
     private String name;
 
     public GenreDTO(Genre g) {

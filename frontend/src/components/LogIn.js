@@ -25,7 +25,7 @@ function LogIn(props) {
           <div className="box-header">Please enter your credentials</div>
           <Form onChange={onChange} className="text-center">
             <Form.Control placeholder="User Name" id="username" /><br />
-            <Form.Control placeholder="Password" id="password" /><br />
+            <Form.Control placeholder="Password" id="password" type="password" /><br />
             <Button onClick={login} className="w-100">Login</Button>
           </Form>
         </Col>

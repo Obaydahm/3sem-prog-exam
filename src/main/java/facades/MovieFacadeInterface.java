@@ -5,7 +5,10 @@
  */
 package facades;
 
+import dto.ActorDTO;
 import dto.MovieDTO;
+import dto.DirectorDTO;
+import dto.GenreDTO;
 import entities.Movie;
 import errorhandling.NotFoundException;
 import java.util.List;
@@ -21,4 +24,7 @@ public interface MovieFacadeInterface {
     public List<MovieDTO> getMoviesByDirector(String name) throws NotFoundException;
     public List<MovieDTO> getMoviesByActor(String name) throws NotFoundException;
     public List<MovieDTO> getMoviesByGenre(String name) throws NotFoundException;
+    public List<DirectorDTO> getAllDirectors() throws NotFoundException;
+    public List<ActorDTO> getAllActors() throws NotFoundException;
+    public List<GenreDTO> getAllGenres() throws NotFoundException;
 }

@@ -11,7 +11,7 @@ import entities.Actor;
  *
  * @author Obaydah Mohamad
  */
-class ActorDTO {
+public class ActorDTO {
     private String name, about;
 
     public ActorDTO(Actor a) {

@@ -11,7 +11,7 @@ import entities.Director;
  *
  * @author Obaydah Mohamad
  */
-class DirectorDTO {
+public class DirectorDTO {
     private String name, about;
 
     public DirectorDTO(Director d) {

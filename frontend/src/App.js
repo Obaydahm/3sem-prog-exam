@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch, NavLink, Redirect } from 'react-router-dom';
 import "./App.css";
 import facade from "./apiFacade";
 import LogIn from "./components/LogIn";
 import Home from "./components/Home";
-import Admin from "./components/Admin";
+import AdminMenu from "./components/Admin/AdminMenu";
+import AdminMovies from "./components/Admin/AdminMovies";
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [allDirectors, setAllDirectors] = useState([{}]);
+  const [allActor, setAllActor] = useState([{}]);
+  const [allGenres, setAllGenres] = useState([{}]);
+  const [years, setYears] = useState([]);
 
   const login = (user, pass) => {
     facade
@@ -21,6 +30,29 @@ function App() {
     facade.logout();
     setLoggedIn(false);
   };
+
+  useEffect(() => {
+    let startYear = 2020;
+    for (let i = 0; i < 2021 - 1960; i++) {
+      years[i] = startYear;
+      startYear--;
+    }
+    setYears([...years]);
+    facade.fetchAllDirectors()
+      .then(res => setAllDirectors([...res]))
+      .catch(err => console.log(err));
+
+    facade.fetchAllActors()
+      .then(res => setAllActor([...res]))
+      .catch(err => console.log(err));
+
+    facade.fetchAllGenres()
+      .then(res => setAllGenres([...res]))
+      .catch(err => console.log(err));
+
+
+  }, [])
+
   return (
     <div>
       <Router>
@@ -36,10 +68,19 @@ function App() {
                 <Redirect to="/" />
               )
             }
-            <Route path="/admin">
-              <Admin />
-            </Route>
           </Route>
+
+          <Route path="/admin">
+            <Container style={{ paddingBottom: 40 }}>
+              <Row className="d-flex justify-content-center">
+                <AdminMenu />
+                <Route exact path="/admin/movies">
+                  <AdminMovies facade={facade} allDirectors={allDirectors} allActor={allActor} allGenres={allGenres} years={years} />
+                </Route>
+              </Row>
+            </Container>
+          </Route>
+
         </Switch>
       </Router>
 

@@ -127,5 +127,8 @@ div.votes{
   justify-content: space-between;
 }
 
+.nav-pills a:active {
+  color: #fff!important;
+}
 
 
