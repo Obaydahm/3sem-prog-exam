@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 
-const AddDirector = (props) => {
-  const [director, setDirector] = useState({
+const AddActor = (props) => {
+  const [actor, setActor] = useState({
     "name": "",
     "about": ""
   });
@@ -14,18 +14,18 @@ const AddDirector = (props) => {
 
   const onChange = evt => {
     const target = evt.target;
-    director[target.id] = target.value;
-    setDirector({ ...director });
+    actor[target.id] = target.value;
+    setActor({ ...actor });
 
   }
 
   const onClick = evt => {
     evt.preventDefault();
-    if (director.name === "" || director.about === "") {
+    if (actor.name === "" || actor.about === "") {
       setError("You may not leave any fields empty!");
     } else {
       setError("");
-      props.facade.addDirector(director)
+      props.facade.addActor(actor)
         .then(res => {
           if (res.hasOwnProperty("id")) setSuccess(true);
         })
@@ -47,19 +47,19 @@ const AddDirector = (props) => {
       }
 
       <Form.Group controlId="name">
-        <Form.Label>What is the fullname of the director?</Form.Label>
+        <Form.Label>What is the fullname of the actor?</Form.Label>
         <Form.Control type="text" placeholder="Eg. Will Smith" />
       </Form.Group>
 
       <Form.Group controlId="about">
-        <Form.Label>About the director</Form.Label>
+        <Form.Label>About the actor</Form.Label>
         <Form.Control as="textarea" rows="3" placeholder="Eg. bla bla bla bla" />
       </Form.Group>
 
-      <Button onClick={onClick}>Add director</Button>
+      <Button onClick={onClick}>Add actor</Button>
       {
         success ? (
-          <Alert variant="success" style={{ marginTop: 10 }}>The director has been added!</Alert>
+          <Alert variant="success" style={{ marginTop: 10 }}>The actor has been added!</Alert>
         ) : null
       }
 
@@ -70,4 +70,4 @@ const AddDirector = (props) => {
   );
 }
 
-export default AddDirector;
+export default AddActor;
