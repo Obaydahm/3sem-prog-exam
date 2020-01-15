@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, NavLink, Redirect } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 
 import MovieMenu from './Movies/MovieMenu';
 import DirectorMenu from './Directors/DirectorMenu';

@@ -97,6 +97,34 @@ class ApiFacade {
     const res = await fetch(URL + "movie/addgenre", options);
     return handleHttpErrors(res);
   };
+  /////////////////////////////////////////////////////
+
+
+  /* Delete */
+  deleteMovie = async (id) => {
+    const options = this.makeOptions("GET", false); //True add's the token
+    const res = await fetch(URL + `movie/deletemovie/${id}`, options);
+    return handleHttpErrors(res);
+  }
+
+  deleteDirector = async (id) => {
+    const options = this.makeOptions("GET", false); //True add's the token
+    const res = await fetch(URL + `movie/deletedirector/${id}`, options);
+    return handleHttpErrors(res);
+  }
+
+  deleteActor = async (id) => {
+    const options = this.makeOptions("GET", false); //True add's the token
+    const res = await fetch(URL + `movie/deleteactor/${id}`, options);
+    return handleHttpErrors(res);
+  }
+
+  deleteGenre = async (id) => {
+    const options = this.makeOptions("GET", false); //True add's the token
+    const res = await fetch(URL + `movie/deletegenre/${id}`, options);
+    return handleHttpErrors(res);
+  }
+
 
   /////////////////////////////////////////////////////
 
@@ -116,6 +144,12 @@ class ApiFacade {
   fetchAllGenres = async () => {
     const options = this.makeOptions("GET", false); //True add's the token
     const res = await fetch(URL + `movie/allgenres`, options);
+    return handleHttpErrors(res);
+  }
+
+  fetchAllMovies = async () => {
+    const options = this.makeOptions("GET", false); //True add's the token
+    const res = await fetch(URL + `movie/all`, options);
     return handleHttpErrors(res);
   }
 

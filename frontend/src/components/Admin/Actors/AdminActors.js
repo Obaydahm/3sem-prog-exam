@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import AddActor from './AddActor';
-
+import DeleteActor from './DeleteActor';
+import { Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,9 +15,13 @@ const AdminActors = (props) => {
     <Col style={{ flexDirection: "column" }} md="7">
       <div className="default-box">
         <div className="box-header">Actor administration</div>
-        <h5>Add actor</h5>
-        <AddActor facade={props.facade} allActors={props.allActors} />
-        <hr />
+        <Route exact path="/admin/actors/add">
+          <AddActor facade={props.facade} allActors={props.allActors} />
+        </Route>
+
+        <Route exact path="/admin/actors/delete">
+          <DeleteActor facade={props.facade} allActors={props.allActors} />
+        </Route>
       </div>
     </Col>
   );

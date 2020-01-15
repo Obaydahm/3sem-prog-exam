@@ -20,9 +20,13 @@ import Col from 'react-bootstrap/Col';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [allDirectors, setAllDirectors] = useState([{}]);
+  const [allMovies, setAllMovies] = useState([{}]);
   const [allActor, setAllActor] = useState([{}]);
   const [allGenres, setAllGenres] = useState([{}]);
   const [years, setYears] = useState([]);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [deletedMovie, setDeletedMovie] = useState({});
 
   const login = (user, pass) => {
     facade
@@ -36,12 +40,17 @@ function App() {
   };
 
   useEffect(() => {
+    console.log("rendered bro")
     let startYear = 2020;
     for (let i = 0; i < 2021 - 1960; i++) {
       years[i] = startYear;
       startYear--;
     }
     setYears([...years]);
+    facade.fetchAllMovies()
+      .then(res => setAllMovies([...res]))
+      .catch(err => console.log(err));
+
     facade.fetchAllDirectors()
       .then(res => setAllDirectors([...res]))
       .catch(err => console.log(err));
@@ -78,19 +87,32 @@ function App() {
             <Container style={{ paddingBottom: 40 }}>
               <Row className="d-flex justify-content-center">
                 <AdminMenu />
-                <Route exact path="/admin/movies/add">
-                  <AdminMovies facade={facade} allDirectors={allDirectors} allActor={allActor} allGenres={allGenres} years={years} />
+                <Route path="/admin/movies">
+                  <AdminMovies
+                    facade={facade}
+                    allMovies={allMovies}
+                    allDirectors={allDirectors}
+                    allActor={allActor}
+                    allGenres={allGenres}
+                    years={years}
+                    error={error}
+                    setError={setError}
+                    success={success}
+                    setSuccess={setSuccess}
+                    deletedMovie={deletedMovie}
+                    setDeletedMovie={setDeletedMovie}
+                  />
                 </Route>
 
-                <Route exact path="/admin/directors/add">
+                <Route path="/admin/directors">
                   <AdminDirectors facade={facade} allDirectors={allDirectors} />
                 </Route>
 
-                <Route exact path="/admin/actors/add">
+                <Route path="/admin/actors">
                   <AdminActors facade={facade} allActors={allActor} />
                 </Route>
 
-                <Route exact path="/admin/genres/add">
+                <Route path="/admin/genres">
                   <AdminGenre facade={facade} allGenres={allGenres} />
                 </Route>
               </Row>
@@ -105,7 +127,6 @@ function App() {
 }
 
 const Header = (props) => {
-  console.log(props.facade.getRole())
   return (
     <ul className="menu">
       <li><span className="logo">MovieRev</span></li>

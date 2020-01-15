@@ -57,7 +57,7 @@ const AddMovie = (props) => {
 
   return (
     <Form onChange={onChange}>
-
+      <h5>Add movie</h5>
 
 
       {

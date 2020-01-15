@@ -39,8 +39,7 @@ const AddActor = (props) => {
 
   return (
     <Form onChange={onChange}>
-
-
+      <h5>Add actor</h5>
 
       {
         error !== "" ? (

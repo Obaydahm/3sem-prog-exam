@@ -38,6 +38,7 @@ const AddGenre = (props) => {
 
   return (
     <Form onChange={onChange}>
+      <h5>Add Genre</h5>
 
 
 
