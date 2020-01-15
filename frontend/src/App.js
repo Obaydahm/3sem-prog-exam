@@ -4,10 +4,8 @@ import { BrowserRouter as Router, Route, Switch, NavLink, Redirect } from 'react
 import "./App.css";
 import facade from "./apiFacade";
 import LogIn from "./components/LogIn";
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Home from "./components/Home";
+import Admin from "./components/Admin";
 
 
 function App() {
@@ -29,7 +27,7 @@ function App() {
         <Header loggedIn={loggedIn} logout={logout} facade={facade} />
         <Switch>
           <Route exact path="/">
-            <Welcome loggedIn={loggedIn} facade={facade} />
+            <Home loggedIn={loggedIn} facade={facade} />
           </Route>
           <Route path="/login">
             {!loggedIn ? (
@@ -38,6 +36,9 @@ function App() {
                 <Redirect to="/" />
               )
             }
+            <Route path="/admin">
+              <Admin />
+            </Route>
           </Route>
         </Switch>
       </Router>
@@ -50,6 +51,7 @@ const Header = (props) => {
   console.log(props.facade.getRole())
   return (
     <ul className="menu">
+      <li><span className="logo">MovieRev</span></li>
       <li><NavLink to="/" exact activeClassName="active">Home</NavLink></li>
       {
         props.loggedIn && props.facade.getRole() === "admin" ? (
@@ -67,21 +69,6 @@ const Header = (props) => {
       }
     </ul>
   );
-}
-
-const Welcome = (props) => {
-
-  return (
-    <Container>
-      <Row className="d-flex justify-content-center">
-
-        <Col className="d-flex default-box" style={{ flexDirection: "column" }} md="6">
-          <h1>Welcome</h1>
-
-        </Col>
-      </Row>
-    </Container>
-  )
 }
 
 export default App;

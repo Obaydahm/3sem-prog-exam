@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap');
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f4f4f4!important;
   margin: 0;
+}
+
+span.logo {
+  color: #fd7e14!important;
 }
 
 #root {
@@ -22,6 +26,7 @@ body {
 
 a {
   text-decoration: none!important;
+  color:inherit!important;
 }
 
 code {
@@ -60,7 +65,7 @@ table {
 }
 
 .active {
-  color: #717171;
+  color: #717171!important;
 }
 
 .default-box{
@@ -76,6 +81,50 @@ table {
   font-size: 20px;
   color: #414141;
   padding-bottom: 15px;
+}
+
+.search-results-box {
+  border-radius: 3px;
+  border: none;
+  background-color: #e9e9e9;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+ul.movie-list {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+li.movie-box:first-child{margin-top: 0px;}
+
+li.movie-box {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+li.movie-box label {
+  font-weight:700;
+  margin-bottom: 0px;
+  color: #313131;
+  padding-right: 5px;
+}
+
+div.votes{
+  font-size: 18px;
+  border-radius: 3px;
+  padding: 10px;
+  background-color: #e9e9e9;
+  margin-top: 15px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
 }
 
 

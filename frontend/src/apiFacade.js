@@ -73,11 +73,9 @@ class ApiFacade {
       });
   };
 
-  fetchJokes = async (search, loggedIn) => {
-    let endpoint = "jokeByCategory";
-    if (loggedIn) endpoint = "jokeByCategoryV2"
-    const options = this.makeOptions("GET", true); //True add's the token
-    const res = await fetch(URL + `${endpoint}/${search.toLowerCase()}`, options);
+  fetchMovies = async (search) => {
+    const options = this.makeOptions("GET", false); //True add's the token
+    const res = await fetch(URL + `movie/${search.searchBy}/${search.query}`, options);
     return handleHttpErrors(res);
   }
 
