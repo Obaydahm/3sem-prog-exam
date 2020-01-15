@@ -9,15 +9,13 @@ import Nav from 'react-bootstrap/Nav';
 
 const AdminDirectors = (props) => {
 
-  const test = [1, 2, 3, 4, 5];
-
   return (
 
     <Col style={{ flexDirection: "column" }} md="7">
       <div className="default-box">
         <div className="box-header">Director administration</div>
         <h5>Add director</h5>
-        <AddDirector facade={props.facade} />
+        <AddDirector facade={props.facade} allDirectors={props.allDirectors} />
         <hr />
       </div>
     </Col>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import AddActor from './AddActor';
+import AddGenre from './AddGenre';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,18 +7,18 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 
 
-const AdminActors = (props) => {
+const AdminGenre = (props) => {
 
   return (
 
     <Col style={{ flexDirection: "column" }} md="7">
       <div className="default-box">
-        <div className="box-header">Actor administration</div>
-        <h5>Add actor</h5>
-        <AddActor facade={props.facade} allActors={props.allActors} />
+        <div className="box-header">Genre administration</div>
+        <h5>Add Genre</h5>
+        <AddGenre facade={props.facade} allGenres={props.allGenres} />
         <hr />
       </div>
     </Col>
   );
 }
-export default AdminActors;
+export default AdminGenre;

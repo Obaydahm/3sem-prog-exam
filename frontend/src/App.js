@@ -10,6 +10,7 @@ import AdminMenu from "./components/Admin/AdminMenu";
 import AdminMovies from "./components/Admin/Movies/AdminMovies";
 import AdminDirectors from "./components/Admin/Directors/AdminDirectors";
 import AdminActors from "./components/Admin/Actors/AdminActors";
+import AdminGenre from "./components/Admin/Genre/AdminGenre";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -86,7 +87,11 @@ function App() {
                 </Route>
 
                 <Route exact path="/admin/actors">
-                  <AdminActors facade={facade} allActor={allActor} />
+                  <AdminActors facade={facade} allActors={allActor} />
+                </Route>
+
+                <Route exact path="/admin/genres">
+                  <AdminGenre facade={facade} allGenres={allGenres} />
                 </Route>
               </Row>
             </Container>

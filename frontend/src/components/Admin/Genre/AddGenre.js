@@ -4,32 +4,31 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 
-const AddDirector = (props) => {
-  const [director, setDirector] = useState({
-    "name": "",
-    "about": ""
+const AddGenre = (props) => {
+  const [genre, setGenre] = useState({
+    "name": ""
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const onChange = evt => {
     const target = evt.target;
-    director[target.id] = target.value;
-    setDirector({ ...director });
+    genre[target.id] = target.value;
+    setGenre({ ...genre });
 
   }
 
   const onClick = evt => {
     evt.preventDefault();
-    if (director.name === "" || director.about === "") {
+    if (genre.name === "" || genre.about === "") {
       setError("You may not leave any fields empty!");
     } else {
       setError("");
-      props.facade.addDirector(director)
+      props.facade.addGenre(genre)
         .then(res => {
           if (res.hasOwnProperty("id")) setSuccess(true);
-          setDirector({ ...res })
-          props.allDirectors.push(director);
+          setGenre({ ...res })
+          props.allGenres.push(genre);
         })
         .catch(err => console.log(err));
     }
@@ -49,19 +48,15 @@ const AddDirector = (props) => {
       }
 
       <Form.Group controlId="name">
-        <Form.Label>What is the fullname of the director?</Form.Label>
-        <Form.Control type="text" placeholder="Eg. Will Smith" />
+        <Form.Label>What is the name of the genre?</Form.Label>
+        <Form.Control type="text" placeholder="Eg. Action" />
       </Form.Group>
 
-      <Form.Group controlId="about">
-        <Form.Label>About the director</Form.Label>
-        <Form.Control as="textarea" rows="3" placeholder="Eg. bla bla bla bla" />
-      </Form.Group>
 
-      <Button onClick={onClick}>Add director</Button>
+      <Button onClick={onClick}>Add genre</Button>
       {
         success ? (
-          <Alert variant="success" style={{ marginTop: 10 }}>The director has been added!</Alert>
+          <Alert variant="success" style={{ marginTop: 10 }}>The genre has been added!</Alert>
         ) : null
       }
 
@@ -72,4 +67,4 @@ const AddDirector = (props) => {
   );
 }
 
-export default AddDirector;
+export default AddGenre;

@@ -28,6 +28,8 @@ const AddActor = (props) => {
       props.facade.addActor(actor)
         .then(res => {
           if (res.hasOwnProperty("id")) setSuccess(true);
+          setActor({ ...res })
+          props.allActors.push(actor);
         })
         .catch(err => console.log(err));
     }
