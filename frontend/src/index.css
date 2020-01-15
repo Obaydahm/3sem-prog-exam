@@ -1,16 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(242, 242, 242);
+  background-color: #f4f4f4!important;
   margin: 0;
 }
 
+#root {
+  height: 100vh;
+}
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 a {
-  text-decoration: none;
-  color: inherit;
+  text-decoration: none!important;
 }
 
 code {
@@ -51,81 +62,21 @@ table {
 .active {
   color: #717171;
 }
-h1 {
-  font-weight: 300;
-  text-align: center;
-}
-.wrap {
-  background: white;
-  width: fit-content;
-  padding: 20px;
-  margin: 0px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-form {
-  width: 70vw;
-  max-width: 700px;
-}
-input, button {
-  width: 100%;
-  padding: 20px;
-  margin: 15px 0px;
-  box-sizing: border-box;
-  border: none;
-  outline: none;
-  font-size: 14px;
-}
-input {
-  border-bottom: 2px solid lightgray;
-}
-button {
-  background: rgb(105, 155, 244);  
-  color: white;
-  outline: none;
-  cursor: pointer;
-  transition: background-color .4s;
-}
-button:hover {
-  background: rgba(105, 155, 244, 0.8);
+
+.default-box{
+  background: #fff;
+  border-radius: 3px;
+  padding: 15px;
+  border: 1px solid #e1e1e1;
 }
 
-
-select.admin-select {
-  width: 100%;
-  font-size: 16px;
-  padding: 10px;
+.default-box .box-header{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #414141;
+  padding-bottom: 15px;
 }
 
-
-select.jokes-select {
-  width: 100%;
-  height: 200px;
-}
-
-table.jokes-table{
-  width: 100%;
-  border-color: #e1e1e1;
-}
-
-table.jokes-table th {
-  background-color: #f1f1f1;
-  color: #616161;
-}
-
-table.jokes-table th,td {
-  text-align: left;
-  padding: 10px;
-}
-#root {
-  height: 100vh;
-}
-.main {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 

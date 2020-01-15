@@ -1,8 +1,15 @@
 import React, { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch, NavLink, Redirect } from 'react-router-dom';
 import "./App.css";
 import facade from "./apiFacade";
 import LogIn from "./components/LogIn";
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -65,20 +72,28 @@ const Header = (props) => {
 const Welcome = (props) => {
 
   return (
-    <div className="main">
-      <div className="wrap">
-        <h1>Welcome</h1>
-        {
-          props.loggedIn ? (
-            <p>You're logged in as {props.facade.getRole()}!</p>
-          ) : (
-              <p>You're not logged in!</p>
-            )
+    <Container>
+      <Row className="d-flex justify-content-center">
 
-        }
-      </div>
-    </div>
+        <Col className="d-flex default-box" style={{ flexDirection: "column" }} md="6">
+          <h1>Welcome</h1>
+
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
 export default App;
+
+/*
+          {
+            props.loggedIn ? (
+              <p>You're logged in as {props.facade.getRole()}!</p>
+            ) : (
+                <p>You're not logged in!</p>
+
+              )
+
+          }
+*/
