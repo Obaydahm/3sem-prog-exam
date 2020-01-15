@@ -12,6 +12,7 @@ import entities.Director;
 import entities.Genre;
 import entities.Movie;
 import facades.MovieFacadeImpl;
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -56,6 +57,7 @@ public class MovieResource {
         return GSON.toJson(FACADE.addMovie(movie));
     }
     
+    @RolesAllowed("admin")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -65,6 +67,7 @@ public class MovieResource {
         return GSON.toJson(FACADE.addDirector(director));
     }
     
+    @RolesAllowed("admin")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -74,6 +77,7 @@ public class MovieResource {
         return GSON.toJson(FACADE.addActor(actor));
     }
     
+    @RolesAllowed("admin")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -83,6 +87,7 @@ public class MovieResource {
         return GSON.toJson(FACADE.addGenre(genre));
     }
     
+    @RolesAllowed("admin")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("deletemovie/{id}")
@@ -90,6 +95,7 @@ public class MovieResource {
         return GSON.toJson(FACADE.deleteMovie(id));
     }
     
+    @RolesAllowed("admin")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("deletedirector/{id}")
@@ -97,6 +103,7 @@ public class MovieResource {
         return GSON.toJson(FACADE.deleteDirector(id));
     }
     
+    @RolesAllowed("admin")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("deletegenre/{id}")
@@ -104,6 +111,7 @@ public class MovieResource {
         return GSON.toJson(FACADE.deleteGenre(id));
     }
     
+    @RolesAllowed("admin")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("deleteactor/{id}")

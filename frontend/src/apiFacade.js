@@ -102,25 +102,25 @@ class ApiFacade {
 
   /* Delete */
   deleteMovie = async (id) => {
-    const options = this.makeOptions("GET", false); //True add's the token
+    const options = this.makeOptions("GET", true); //True add's the token
     const res = await fetch(URL + `movie/deletemovie/${id}`, options);
     return handleHttpErrors(res);
   }
 
   deleteDirector = async (id) => {
-    const options = this.makeOptions("GET", false); //True add's the token
+    const options = this.makeOptions("GET", true); //True add's the token
     const res = await fetch(URL + `movie/deletedirector/${id}`, options);
     return handleHttpErrors(res);
   }
 
   deleteActor = async (id) => {
-    const options = this.makeOptions("GET", false); //True add's the token
+    const options = this.makeOptions("GET", true); //True add's the token
     const res = await fetch(URL + `movie/deleteactor/${id}`, options);
     return handleHttpErrors(res);
   }
 
   deleteGenre = async (id) => {
-    const options = this.makeOptions("GET", false); //True add's the token
+    const options = this.makeOptions("GET", true); //True add's the token
     const res = await fetch(URL + `movie/deletegenre/${id}`, options);
     return handleHttpErrors(res);
   }

@@ -40,7 +40,8 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("rendered bro")
+
+    if (facade.getRole() === "admin" || facade.getRole === "user") setLoggedIn(true);
     let startYear = 2020;
     for (let i = 0; i < 2021 - 1960; i++) {
       years[i] = startYear;

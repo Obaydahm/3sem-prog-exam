@@ -34,7 +34,7 @@ public class Director implements Serializable {
     private Long id;
     private String name, about;
     
-    @ManyToMany
+    @ManyToMany(mappedBy = "directors")
     private List<Movie> movies;
 
     public Director() {

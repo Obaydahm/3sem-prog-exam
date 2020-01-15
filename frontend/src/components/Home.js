@@ -48,7 +48,10 @@ const Home = (props) => {
     } else {
       facade.fetchMovies(search)
         .then(res => setSearchResults([...res]))
-        .catch(err => console.log(err));
+        .catch(err => {
+          console.log(err)
+          setSearchResults([{ directors: [], actors: [], genres: [] }]);
+        });
     }
   }
 

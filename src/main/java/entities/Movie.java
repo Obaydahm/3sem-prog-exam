@@ -40,13 +40,13 @@ public class Movie implements Serializable {
     private String title;
     private int year, votes;
     
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany
     private List<Director> directors;
     
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany
     private List<Actor> actors;
     
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany
     private List<Genre> genres;
 
     public Movie() {

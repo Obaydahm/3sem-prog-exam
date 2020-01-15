@@ -32,7 +32,7 @@ public class Genre implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToMany
+    @ManyToMany(mappedBy = "genres")
     private List<Movie> movies;
 
     public Genre() {
