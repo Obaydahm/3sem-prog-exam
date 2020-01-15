@@ -78,19 +78,19 @@ function App() {
             <Container style={{ paddingBottom: 40 }}>
               <Row className="d-flex justify-content-center">
                 <AdminMenu />
-                <Route exact path="/admin/movies">
+                <Route exact path="/admin/movies/add">
                   <AdminMovies facade={facade} allDirectors={allDirectors} allActor={allActor} allGenres={allGenres} years={years} />
                 </Route>
 
-                <Route exact path="/admin/directors">
+                <Route exact path="/admin/directors/add">
                   <AdminDirectors facade={facade} allDirectors={allDirectors} />
                 </Route>
 
-                <Route exact path="/admin/actors">
+                <Route exact path="/admin/actors/add">
                   <AdminActors facade={facade} allActors={allActor} />
                 </Route>
 
-                <Route exact path="/admin/genres">
+                <Route exact path="/admin/genres/add">
                   <AdminGenre facade={facade} allGenres={allGenres} />
                 </Route>
               </Row>
