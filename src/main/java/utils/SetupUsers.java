@@ -25,7 +25,7 @@ public class SetupUsers {
 
     if(user.getPassword().equals("test")||user.getPassword().equals("test")||user.getPassword().equals("test"))
       throw new UnsupportedOperationException("You have not changed the passwords");
-
+    
     em.getTransaction().begin();
     Role userRole = new Role("user");
     Role adminRole = new Role("admin");

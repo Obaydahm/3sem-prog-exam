@@ -40,13 +40,13 @@ public class Movie implements Serializable {
     private String title;
     private int year, votes;
     
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "movies")
     private List<Director> directors;
     
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "movies")
     private List<Actor> actors;
     
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "movies")
     private List<Genre> genres;
 
     public Movie() {

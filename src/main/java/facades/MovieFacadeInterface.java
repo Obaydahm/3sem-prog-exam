@@ -26,6 +26,10 @@ public interface MovieFacadeInterface {
     public DirectorDTO addDirector(Director d) throws AlreadyExistsException;
     public ActorDTO addActor(Actor a) throws AlreadyExistsException;
     public GenreDTO addGenre(Genre g) throws AlreadyExistsException;
+    public MovieDTO deleteMovie(Long id) throws NotFoundException;
+    public DirectorDTO deleteDirector(Long id) throws NotFoundException;
+    public ActorDTO deleteActor(Long id) throws NotFoundException;
+    public GenreDTO deleteGenre(Long id) throws NotFoundException;
     public List<MovieDTO> getAllMovies() throws NotFoundException;
     public List<MovieDTO> getMovieByTitle(String title) throws NotFoundException;
     public List<MovieDTO> getMoviesByDirector(String name) throws NotFoundException;

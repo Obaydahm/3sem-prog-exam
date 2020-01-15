@@ -33,7 +33,7 @@ public class Actor implements Serializable {
     private Long id;
     private String name, about;
     
-    @ManyToMany(mappedBy = "actors")
+    @ManyToMany
     private List<Movie> movies;
 
     public Actor() {

@@ -85,6 +85,20 @@ public class MovieResource {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("deletemovie/{id}")
+    public String deleteMovie(@PathParam("id") Long id) {
+        return GSON.toJson(FACADE.deleteMovie(id));
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("deletedirector/{id}")
+    public String deleteDirector(@PathParam("id") Long id) {
+        return GSON.toJson(FACADE.deleteDirector(id));
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("all")
     public String getAllMovies() {
         return GSON.toJson(FACADE.getAllMovies());

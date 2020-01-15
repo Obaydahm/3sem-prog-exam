@@ -276,12 +276,72 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
 
     @Override
     public GenreDTO addGenre(Genre g) throws AlreadyExistsException {
-                EntityManager em = emf.createEntityManager();
+        EntityManager em = emf.createEntityManager();
         Genre genre;
         try{
             if(getGenre(g.getName()) != null) throw new AlreadyExistsException("Genre with this name already exists!");
             em.getTransaction().begin();
             em.persist(g);
+            em.getTransaction().commit();
+            return new GenreDTO(g);
+        }finally{
+            em.close();
+        }
+    }
+
+    @Override
+    public MovieDTO deleteMovie(Long id) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try{
+            Movie m = em.find(Movie.class, id);
+            if(m == null) throw new NotFoundException("Movie with id " + id + " doesnt exist.");
+            em.getTransaction().begin();
+            em.remove(m);
+            em.getTransaction().commit();
+            return new MovieDTO(m);
+        }finally{
+            em.close();
+        }
+    }
+
+    @Override
+    public DirectorDTO deleteDirector(Long id) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try{
+            Director d = em.find(Director.class, id);
+            if(d == null) throw new NotFoundException("Director with id " + id + " doesnt exist.");
+            em.getTransaction().begin();
+            em.remove(d);
+            em.getTransaction().commit();
+            return new DirectorDTO(d);
+        }finally{
+            em.close();
+        }
+    }
+
+    @Override
+    public ActorDTO deleteActor(Long id) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try{
+            Actor a = em.find(Actor.class, id);
+            if(a == null) throw new NotFoundException("Actor with id " + id + " doesnt exist.");
+            em.getTransaction().begin();
+            em.remove(a);
+            em.getTransaction().commit();
+            return new ActorDTO(a);
+        }finally{
+            em.close();
+        }
+    }
+
+    @Override
+    public GenreDTO deleteGenre(Long id) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try{
+            Genre g = em.find(Genre.class, id);
+            if(g == null) throw new NotFoundException("Genre with id " + id + " doesnt exist.");
+            em.getTransaction().begin();
+            em.remove(g);
             em.getTransaction().commit();
             return new GenreDTO(g);
         }finally{
