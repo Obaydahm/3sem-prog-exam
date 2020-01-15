@@ -26,7 +26,9 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "Movie.getAll", query = "SELECT new dto.MovieDTO(m) FROM Movie m"),
     @NamedQuery(name = "Movie.deleteAll", query = "DELETE FROM Movie m"),
     @NamedQuery(name = "Movie.getByTitle", query = "SELECT new dto.MovieDTO(m) FROM Movie m WHERE m.title = :title"),
-    @NamedQuery(name = "Movie.getByDirector", query = "SELECT new dto.MovieDTO(m) FROM Movie m WHERE m.directors = :director")
+    @NamedQuery(name = "Movie.getByDirector", query = "SELECT new dto.MovieDTO(m) FROM Movie m WHERE m.directors = :director"),
+    @NamedQuery(name = "Movie.getByActor", query = "SELECT new dto.MovieDTO(m) FROM Movie m WHERE m.actors = :actor"),
+    @NamedQuery(name = "Movie.getByGenre", query = "SELECT new dto.MovieDTO(m) FROM Movie m WHERE m.genres = :genre")
 })
 public class Movie implements Serializable {
 

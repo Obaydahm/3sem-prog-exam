@@ -162,7 +162,6 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
     @Override
     public List<MovieDTO> getMoviesByDirector(String name) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
-        List<MovieDTO> moviesDTO;
         try {
             Director d = getDirector(name);
             if(d == null) throw new NotFoundException(name + " isn't a registered director.");
@@ -175,13 +174,31 @@ public class MovieFacadeImpl implements MovieFacadeInterface{
     }
 
     @Override
-    public List<MovieDTO> getMoviesByActor(String Actor) throws NotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<MovieDTO> getMoviesByActor(String name) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Actor a = getActor(name);
+            if(a == null) throw new NotFoundException(name + " isn't a registered actor.");
+            List<MovieDTO> movies = em.createNamedQuery("Movie.getByActor", MovieDTO.class).setParameter("actor", a).getResultList();
+            if(movies.size() < 1) throw new NotFoundException(a.getName() + " haven't starred any movies yet.");
+            return movies;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
-    public List<MovieDTO> getMoviesByGenre(String Genres) throws NotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<MovieDTO> getMoviesByGenre(String name) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Genre g = getGenre(name);
+            if(g == null) throw new NotFoundException(name + " isn't a registered genre.");
+            List<MovieDTO> movies = em.createNamedQuery("Movie.getByGenre", MovieDTO.class).setParameter("genre", g).getResultList();
+            if(movies.size() < 1) throw new NotFoundException(g.getName() + " haven't been assigned to any movies yet.");
+            return movies;
+        } finally {
+            em.close();
+        }
     }
     
 }
